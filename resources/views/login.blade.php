@@ -34,11 +34,12 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-10">
-                        <form class="form-group">
-                            <label for="email" class="px-2">Email</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Email">
-                            <label for="senha" class="px-2 mt-3">Senha</label>
-                            <input type="text" name="senha" id="senha" class="form-control" placeholder="Senha">
+                        <form action="{{ route('principal') }}" method="POST" class="form-group">
+                        {{ csrf_field() }}
+                            <label for="username" class="px-2">Nome de usuário</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Nome de usuário">
+                            <label for="password" class="px-2 mt-3">Senha</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Senha">
                             <button type="submit" class="form-control btn btn-secondary mt-4">Entrar</button>
                         </form>
                         <div class="text-center my-2">

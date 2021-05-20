@@ -34,7 +34,8 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-10">
-                        <form class="form-group">
+                        <form action="{{ route('usuario.create') }}" method="POST" class="form-group">
+                        {{ csrf_field() }}
                             <label for="nome" class="px-2">Nome:</label>
                             <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome">
                             <div class="row">
@@ -47,27 +48,8 @@
                                     <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00">
                                 </div>
                             </div>
-                            <div class="row justify-content-center align-items-center">
-                                <label for="sexo" class="px-2 mt-2 col-3">Sexo:</label>
-                                <div class="form-check form-check-inline col-4">
-                                    <input type="radio" name="masc" id="masc" class="form-check-input" value="m" />
-                                    <label for="masc" class="form-check-label">Maculino</label>
-                                </div>
-                                <div class="form-check form-check-inline col-4">
-                                    <input type="radio" name="femi" id="femi" class="form-check-input" value="f" />
-                                    <label for="femi" class="form-check-label">Feminino</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="dtNasc" class="px-2 mt-3">Data de nascimento:</label>
-                                    <input type="date" name="dtNasc" id="dtNasc" class="form-control">
-                                </div>
-                                <div class="col-6">
-                                    <label for="telefone" class="px-2 mt-3">Telefone:</label>
-                                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="(00) 00000-0000">
-                                </div>
-                            </div>
+                            
+                            
                             <div class="row">
                                 <div class="col-10">
                                     <label for="logradouro" class="px-2 mt-3">Logradouro:</label>
@@ -78,16 +60,7 @@
                                     <input type="text" name="numero" id="numero" class="form-control px-2" placeholder="000">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <label for="cep" class="px-2 mt-3">CEP:</label>
-                                    <input type="text" name="cep" id="cep" class="form-control" placeholder="00.000-000">
-                                </div>
-                                <div class="col-7">
-                                    <label for="bairro" class="px-2 mt-3">Bairro:</label>
-                                    <input type="text" name="bairro" id="bairro" class="form-control" placeholder="Bairro">
-                                </div>
-                            </div>
+                            
                             <div class="row">
                                 <div class="col-8">
                                     <label for="cidade" class="px-2 mt-3">Cidade:</label>
@@ -98,16 +71,38 @@
                                     <input type="text" name="estado" id="estado" class="form-control" placeholder="Estado">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="areaFormacao" class="px-2 mt-3">Área de formação:</label>
+                                    <input type="text" name="areaFormacao" id="areaFormacao" class="form-control" placeholder="Sistemas de Informação">
+                                </div>
+                                <div class="col-6">
+                                    <label for="areaAtuacao" class="px-2 mt-3">Área de atuação:</label>
+                                    <input type="text" name="areaAtuacao" id="areaAtuacao" class="form-control" placeholder="Programador">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="anoFormacao" class="px-2 mt-3">Ano de formação:</label>
+                                    <input type="text" name="anoFormacao" id="anoFormacao" class="form-control" placeholder="2020">
+                                </div>
+                                <div class="col-6">
+                                    <label for="telefone" class="px-2 mt-3">Telefone:</label>
+                                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="(00) 00000-0000">
+                                </div>
+                            </div>
                             <label for="email" class="px-2 mt-3">E-mail:</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Exmplo@findcollab.com.br">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Exmplo@findcollab.com.br">
+                            <label for="nomeUsuario" class="px-2 mt-3">Nome de usuario:</label>
+                            <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" placeholder="Candidato_0506">
                             <div class="row">
                                 <div class="col-6">
                                     <label for="senha" class="px-2 mt-3">Senha:</label>
-                                    <input type="text" name="senha" id="senha" class="form-control" placeholder="*******">
+                                    <input type="password" name="senha" id="senha" class="form-control" placeholder="*******">
                                 </div>
                                 <div class="col-6">
                                     <label for="confSenha" class="px-2 mt-3">Confirmar senha:</label>
-                                    <input type="text" name="confSenha" id="confSenha" class="form-control" placeholder="*******">
+                                    <input type="password" name="confSenha" id="confSenha" class="form-control" placeholder="*******">
                                 </div>
                             </div>
                             <div class="text-center bg-light d-none mt-3" id="message-error">

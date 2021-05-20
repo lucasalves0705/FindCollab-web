@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
 Route::get('/login', function (){
-    return view('login');
+    return view("login");
 })->name('login');
+
 Route::get('/register', function (){
     return view('register');
 })->name('register');
+
+Route::post('create_user', 'UsuariosController@create')->name('usuario.create');
+
+Route::post('/main', function (Request $request) {
+    $input = Request::only('username', 'password');
+    $user = DB::select('EXEC sp_select_usuario_candidato ?', [$input['username']]);
+    
+    return 'home';
+})->name('principal');
