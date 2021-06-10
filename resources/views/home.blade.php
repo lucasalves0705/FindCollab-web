@@ -29,7 +29,7 @@
         <div class="row h-100 d-flex justify-content-center align-items-center">
             <div class="col-md-6" id="container-center" >
                 <div class="row justify-content-center">
-                    <button type="button" class="col-3 btn btn-outline-dark btn-lg px-2 mx-1">Canditado</button>
+                    <button type="button" class="col-3 btn btn-outline-dark btn-lg px-2 mx-1"><a href="{{ route('usuario_index') }}">Canditado</button>
                     <button type="button" class="col-3 btn btn-outline-dark btn-lg px-2 mx-1">Empresa</button>
                 </div>
             </div>

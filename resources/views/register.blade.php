@@ -34,71 +34,72 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-10">
-                        <form action="{{ route('usuario.create') }}" method="POST" class="form-group">
+                        <form action="{{ route('usuario_store') }}" method="POST" class="form-group">
                         {{ csrf_field() }}
                             <label for="nome" class="px-2">Nome:</label>
-                            <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome">
+                            <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" value="{{ $candidato->nome ?? '' }}">
+                            <input type="hidden" name="id" id="id" value="{{ $candidato->id ?? '' }}">
                             <div class="row">
                                 <div class="col-6">
                                     <label for="rg" class="px-2 mt-3">RG:</label>
-                                    <input type="text" name="rg" id="rg" class="form-control" placeholder="00.000.000-0">
+                                    <input type="text" name="rg" id="rg" class="form-control" placeholder="00.000.000-0" value="{{ $candidato->rg ?? '' }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="cpf" class="px-2 mt-3">CPF:</label>
-                                    <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00">
+                                    <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00" value="{{ $candidato->cpf ?? '' }}">
                                 </div>
                             </div>
-                            
-                            
+
+
                             <div class="row">
                                 <div class="col-10">
                                     <label for="logradouro" class="px-2 mt-3">Logradouro:</label>
-                                    <input type="text" name="logradouro" id="logradouro" class="form-control" placeholder="Logradouro">
+                                    <input type="text" name="logradouro" id="logradouro" class="form-control" placeholder="Logradouro" value="{{ $candidato->logradouro ?? '' }}">
                                 </div>
                                 <div class="col-2">
                                     <label for="numero" class="px-2 mt-3">N°:</label>
-                                    <input type="text" name="numero" id="numero" class="form-control px-2" placeholder="000">
+                                    <input type="text" name="numero" id="numero" class="form-control px-2" placeholder="000" value="{{ $candidato->numero ?? '' }}">
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-8">
                                     <label for="cidade" class="px-2 mt-3">Cidade:</label>
-                                    <input type="text" name="cidade" id="cidade" class="form-control" placeholder="Cidade">
+                                    <input type="text" name="cidade" id="cidade" class="form-control" placeholder="Cidade" value="{{ $candidato->cidade ?? '' }}">
                                 </div>
                                 <div class="col-4">
                                     <label for="estado" class="px-2 mt-3">Estado:</label>
-                                    <input type="text" name="estado" id="estado" class="form-control" placeholder="Estado">
+                                    <input type="text" name="estado" id="estado" class="form-control" placeholder="Estado" value="{{ $candidato->estado ?? '' }}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     <label for="areaFormacao" class="px-2 mt-3">Área de formação:</label>
-                                    <input type="text" name="areaFormacao" id="areaFormacao" class="form-control" placeholder="Sistemas de Informação">
+                                    <input type="text" name="areaFormacao" id="areaFormacao" class="form-control" placeholder="Sistemas de Informação" value="{{ $candidato->areaFormacao ?? '' }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="areaAtuacao" class="px-2 mt-3">Área de atuação:</label>
-                                    <input type="text" name="areaAtuacao" id="areaAtuacao" class="form-control" placeholder="Programador">
+                                    <input type="text" name="areaAtuacao" id="areaAtuacao" class="form-control" placeholder="Programador" value="{{ $candidato->areaAtuacao ?? '' }}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     <label for="anoFormacao" class="px-2 mt-3">Ano de formação:</label>
-                                    <input type="text" name="anoFormacao" id="anoFormacao" class="form-control" placeholder="2020">
+                                    <input type="text" name="anoFormacao" id="anoFormacao" class="form-control" placeholder="2020" value="{{ $candidato->anoFormacao ?? '' }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="telefone" class="px-2 mt-3">Telefone:</label>
-                                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="(00) 00000-0000">
+                                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="(00) 00000-0000" value="{{ $candidato->telefone ?? '' }}">
                                 </div>
                             </div>
                             <label for="email" class="px-2 mt-3">E-mail:</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Exmplo@findcollab.com.br">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Exmplo@findcollab.com.br" value="{{ $candidato->email ?? '' }}">
                             <label for="nomeUsuario" class="px-2 mt-3">Nome de usuario:</label>
-                            <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" placeholder="Candidato_0506">
+                            <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" placeholder="Candidato_0506" value="{{ $candidato->nomeUsuario ?? '' }}">
                             <div class="row">
                                 <div class="col-6">
                                     <label for="senha" class="px-2 mt-3">Senha:</label>
-                                    <input type="password" name="senha" id="senha" class="form-control" placeholder="*******">
+                                    <input type="password" name="senha" id="senha" class="form-control" placeholder="*******" value="{{ $candidato->senha ?? '' }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="confSenha" class="px-2 mt-3">Confirmar senha:</label>

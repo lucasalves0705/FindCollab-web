@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +27,19 @@ Route::get('/register', function (){
     return view('register');
 })->name('register');
 
-Route::post('create_user', 'UsuariosController@create')->name('usuario.create');
 
-Route::post('/main', function (Request $request) {
-    $input = Request::only('username', 'password');
-    $user = DB::select('EXEC sp_select_usuario_candidato ?', [$input['username']]);
-    
-    return 'home';
-})->name('principal');
+
+Route::get('/usuario/novo', [Controllers\UsuariosController::class, 'create'])->name('usuario_create');
+Route::post('/usuario/novo', [Controllers\UsuariosController::class, 'store'])->name('usuario_store');
+Route::get('/usuario/alterar/{id}', [Controllers\UsuariosController::class, 'edit'])->name('usuario_edit');
+Route::get('/usuario/consultar/{id}', [Controllers\UsuariosController::class, 'show'])->name('usuario_show');
+Route::get('/usuario/apagar/{id}', [Controllers\UsuariosController::class, 'destroy'])->name('usuario_destroy');
+Route::get('/usuario/', [Controllers\UsuariosController::class, 'index'])->name('usuario_index');
+
+//Route::post('/main', function (Request $request) {
+//    $input = Request::only('username', 'password');
+//    $user = DB::select('EXEC sp_select_usuario_candidato ?', [$input['username']]);
+//
+//    return 'home';
+//})->name('principal');
+
