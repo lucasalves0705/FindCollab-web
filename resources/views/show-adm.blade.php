@@ -25,17 +25,28 @@
 </header>
 
 <section>
-    <div class="container" id="container">
-        <div class="row h-100 d-flex justify-content-center align-items-center">
-            <div class="col-md-6" id="container-center" >
-                <div class="row justify-content-center">
-                    <button type="button" class="col-3 btn btn-outline-dark btn-lg px-2 mx-1 my-5"><a href="{{ route('usuario_index') }}" class="text-dark">Canditado</a></button>
-                    <button type="button" class="col-3 btn btn-outline-dark btn-lg px-2 mx-1 my-5"><a href="{{ route('adm_index') }}" class="text-dark">Administrador</a></button>
-                </div>
+
+    <div class="container">
+        <div class="row justify-content-center py-5 border-bottom">
+            <h4>FindCollab</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <a href="{{ route('adm_destroy', ['id' => $adms['codigo']]) }}" class="btn btn-link">Deletar</a>
             </div>
         </div>
-    </div>
+            <div class="row justify-content-center my-1 pt-3 px-3 border card-empresa">
+                <div class=col-12>
+                    <div class="row">
+                        <h4 class="col-8 d-inline py-2">
+                            {{ $adms['email'] }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
 </section>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

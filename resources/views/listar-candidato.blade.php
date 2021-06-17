@@ -14,23 +14,29 @@
 
 <section>
 
-    <div class="content">
+    <div class="container">
         <div class="row justify-content-center py-5 border-bottom">
-            <input type="text" name="nomeEmpresa" id="nomeEmpresa" class="col-10 border border-secondary rounded py-2 d-inline" />
-            <button class="btn btn-primary rounded bg-dark px-4 py-2 mx-1 d-inline">Buscar</button>
+            <h4>FindCollab</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <a href="{{ route('usuario_create') }}" class="btn btn-link">Novo</a>
+            </div>
         </div>
 
         @foreach($candidatos as $candidato)
-            <div class="row justify-content-center mt-5 pt-3 px-3 border card-empresa">
+            <div class="row justify-content-center my-1 pt-3 px-3 border card-empresa">
                 <div class=col-12>
                     <div class="row">
-                        <h3 class="col-8 d-inline"><a href="/empresa/cadastro" class="text-dark text"></a></h3>
+                        <h3 class="col-8 d-inline">
+                            <a href="{{ route('usuario_show', ['id' => $candidato->codigo]) }}" class="text-dark text">{{ $candidato->nome }}</a>
+                        </h3>
                         <span class="col-4 d-inline float-right text-right pt-2">{{ $candidato->cnpj_empresa }}</span>
                     </div>
                     <div class="row">
-                        <p class="col-8 d-inline pt-2">Descricao</p>
-                        <p class="col-4 d-inline float-right text-right pt-2">Joaquim Marques Guimaro - 269 - Santa cruz</p>
-                        <a href="{{ route('usuario_edit', ['id' => $candidato->codigo]) }}">Editar</a>
+                        <p class="col-8 d-inline pt-2">{{ $candidato->area_atuacao }}</p>
+                        <p class="col-4 d-inline float-right text-right pt-2">{{ $candidato->rua.", ".$candidato->numero." - ".$candidato->cidade }}</p>
                     </div>
                 </div>
             </div>

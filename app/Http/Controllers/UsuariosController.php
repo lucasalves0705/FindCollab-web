@@ -36,8 +36,7 @@ class UsuariosController extends Controller
      */
     public function create(Request $request)
     {
-        $input = Request::all();
-        return 'certo';
+        return view('register');
     }
 
     /**
@@ -50,9 +49,15 @@ class UsuariosController extends Controller
     {
         $candidato = new Usuario($request->all());
 
-        $response = Http::withBody(
-            json_encode($candidato), 'application/javascript'
-        )->post(self::link.'candidato/inserir.php');
+        if (!$candidato->codigo ?? false) {
+            $response = Http::withBody(
+                json_encode($candidato), 'application/javascript'
+            )->post(self::link.'candidato/inserir.php');
+        } else {
+            $response = Http::withBody(
+                json_encode($candidato), 'application/javascript'
+            )->post(self::link.'candidato/editar.php');
+        }
 
         return redirect()->route('usuario_index');
     }
@@ -61,18 +66,20 @@ class UsuariosController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
         $body = new \stdClass();
-
-        $body->cod_empresa =$id;
+        $body->codigo =$id;
 
         $response = Http::withBody(
             json_encode($body), 'application/javascript'
         )->post(self::link.'candidato/consultar.php');
-        dd($response->json());
+
+        $candidato = new Usuario($response->json()[0]);
+
+        return view('register', compact('candidato'));
     }
 
     /**
@@ -85,11 +92,11 @@ class UsuariosController extends Controller
     {
         $body = new \stdClass();
 
-        $body->cod_empresa =$id;
+        $body->codigo =$id;
 
         $response = Http::withBody(
             json_encode($body), 'application/javascript'
-        )->post(self::link.'consultar.php');
+        )->post(self::link.'candidato/consultar.php');
 
         $candidato = new Usuario($response[0]);
 
@@ -118,12 +125,76 @@ class UsuariosController extends Controller
     {
         $body = new \stdClass();
 
-        $body->cod_empresa =$id;
+        $body->codigo = $id;
 
         $response = Http::withBody(
             json_encode($body), 'application/javascript'
-        )->post(self::link.'excluir.php');
+        )->post(self::link.'candidato/excluir.php');
+
+        dd($body, $response);
 
         return redirect()->route('usuario_index');
+    }
+
+
+    /********************/
+
+    const linkAdm = 'https://apifindcollaboficial.herokuapp.com/view/';
+
+    public function indexAdm()
+    {
+        $adms_array = Http::get(self::linkAdm.'administrador/listar.php')->json();
+
+        $adms = new Collection();
+
+        foreach ($adms_array as $adm){
+            $adms->add(new Usuario($adm));
+        }
+
+        return view('listar-adm', compact('adms'));
+    }
+
+    public function createAdm(Request $request)
+    {
+        return view('register-adm');
+    }
+
+    public function insereAdm(Request $request)
+    {
+
+        $adm = array("codigo" => "15", "email" => $request->all()['email'], "senha" => $request->all()['senha']);
+        $response = Http::withBody(
+            json_encode($adm)
+            , 'application/javascript'
+            )->post(self::linkAdm.'administrador/inserir.php');
+
+        return redirect()->route('adm_index');
+    }
+
+    public function showAdm($id)
+    {
+        $body = new \stdClass();
+        $body->codigo =$id;
+
+        $response = Http::withBody(
+            json_encode($body), 'application/javascript'
+        )->post(self::link.'administrador/consultar.php');
+
+        $adms = $response->json()[0];
+
+        return view('show-adm', compact('adms'));
+    }
+
+    public function destroyAdm($id)
+    {
+        $body = new \stdClass();
+
+        $body->codigo = $id;
+
+        $response = Http::withBody(
+            json_encode($body), 'application/javascript'
+        )->post(self::link.'administrador/excluir.php');
+
+        return redirect()->route('adm_index');
     }
 }

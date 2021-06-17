@@ -38,7 +38,7 @@
                         {{ csrf_field() }}
                             <label for="nome" class="px-2">Nome:</label>
                             <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" value="{{ $candidato->nome ?? '' }}">
-                            <input type="hidden" name="id" id="id" value="{{ $candidato->id ?? '' }}">
+                            <input type="hidden" name="codigo" id="codigo" value="{{ $candidato->codigo ?? '' }}">
                             <div class="row">
                                 <div class="col-6">
                                     <label for="rg" class="px-2 mt-3">RG:</label>
@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="col-10">
                                     <label for="logradouro" class="px-2 mt-3">Logradouro:</label>
-                                    <input type="text" name="logradouro" id="logradouro" class="form-control" placeholder="Logradouro" value="{{ $candidato->logradouro ?? '' }}">
+                                    <input type="text" name="rua" id="logradouro" class="form-control" placeholder="Logradouro" value="{{ $candidato->rua ?? '' }}">
                                 </div>
                                 <div class="col-2">
                                     <label for="numero" class="px-2 mt-3">N°:</label>
@@ -75,31 +75,29 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label for="areaFormacao" class="px-2 mt-3">Área de formação:</label>
-                                    <input type="text" name="areaFormacao" id="areaFormacao" class="form-control" placeholder="Sistemas de Informação" value="{{ $candidato->areaFormacao ?? '' }}">
+                                    <input type="text" name="area_formacao" id="areaFormacao" class="form-control" placeholder="Sistemas de Informação" value="{{ $candidato->area_formacao ?? '' }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="areaAtuacao" class="px-2 mt-3">Área de atuação:</label>
-                                    <input type="text" name="areaAtuacao" id="areaAtuacao" class="form-control" placeholder="Programador" value="{{ $candidato->areaAtuacao ?? '' }}">
+                                    <input type="text" name="area_atuacao" id="areaAtuacao" class="form-control" placeholder="Programador" value="{{ $candidato->area_atuacao ?? '' }}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     <label for="anoFormacao" class="px-2 mt-3">Ano de formação:</label>
-                                    <input type="text" name="anoFormacao" id="anoFormacao" class="form-control" placeholder="2020" value="{{ $candidato->anoFormacao ?? '' }}">
+                                    <input type="text" name="ano_formacao" id="anoFormacao" class="form-control" placeholder="2020" value="{{ $candidato->ano_formacao ?? '' }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="telefone" class="px-2 mt-3">Telefone:</label>
-                                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="(00) 00000-0000" value="{{ $candidato->telefone ?? '' }}">
+                                    <input type="text" name="fone1" id="telefone" class="form-control" placeholder="(00) 00000-0000" value="{{ $candidato->fone1 ?? '' }}">
                                 </div>
                             </div>
                             <label for="email" class="px-2 mt-3">E-mail:</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="Exmplo@findcollab.com.br" value="{{ $candidato->email ?? '' }}">
-                            <label for="nomeUsuario" class="px-2 mt-3">Nome de usuario:</label>
-                            <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" placeholder="Candidato_0506" value="{{ $candidato->nomeUsuario ?? '' }}">
                             <div class="row">
                                 <div class="col-6">
                                     <label for="senha" class="px-2 mt-3">Senha:</label>
-                                    <input type="password" name="senha" id="senha" class="form-control" placeholder="*******" value="{{ $candidato->senha ?? '' }}">
+                                    <input type="password" name="senha" id="senha" class="form-control" placeholder="*******" value="">
                                 </div>
                                 <div class="col-6">
                                     <label for="confSenha" class="px-2 mt-3">Confirmar senha:</label>
@@ -109,8 +107,16 @@
                             <div class="text-center bg-light d-none mt-3" id="message-error">
                                 <span class="text-danger ">Senhas diferentes!</span>
                             </div>
-                            <button type="submit" class="form-control btn btn-secondary mt-4">Registrar-se</button>
+                            <button type="submit" class="form-control btn btn-secondary mt-4">Salvar</button>
                         </form>
+
+                        @isset($candidato)
+                            <form action="{{ route('usuario_destroy', ["id" => $candidato->codigo]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="form-control btn btn-link">Remover</button>
+                            </form>
+                        @endisset
                     </div>
                 </div>
             </div>

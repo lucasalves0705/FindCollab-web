@@ -10,21 +10,24 @@ class Usuario extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'nome',
-        'rg',
-        'cpf',
-        'logradouro',
-        'numero',
-        'cidade',
-        'estado',
-        'areaFormacao',
-        'areaAtuacao',
-        'anoFormacao',
-        'telefone',
-        'email',
-        'nomeUsuario',
-        'senha'
-
+        "codigo",
+        "nome",
+        "rua",
+        "bairro",
+        "cep",
+        "numero",
+        "complemento",
+        "cidade",
+        "estado",
+        "fone1",
+        "fone2",
+        "email",
+        "senha",
+        "rg",
+        "sexo",
+        "cpf",
+        "ano_formacao",
+        "area_atuacao",
+        "area_formacao",
     ];
 }

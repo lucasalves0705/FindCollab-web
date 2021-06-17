@@ -29,6 +29,13 @@ Route::get('/register', function (){
 
 
 
+Route::get('/administrador/', [Controllers\UsuariosController::class, 'indexAdm'])->name('adm_index');
+Route::get('/administrador/novo', [Controllers\UsuariosController::class, 'createAdm'])->name('adm_create');
+Route::post('/administrador/novo', [Controllers\UsuariosController::class, 'insereAdm'])->name('adm_store');
+Route::get('/administrador/consultar/{id}', [Controllers\UsuariosController::class, 'showAdm'])->name('adm_show');
+Route::get('/administrador/apagar/{id}', [Controllers\UsuariosController::class, 'destroyAdm'])->name('adm_destroy');
+
+
 Route::get('/usuario/novo', [Controllers\UsuariosController::class, 'create'])->name('usuario_create');
 Route::post('/usuario/novo', [Controllers\UsuariosController::class, 'store'])->name('usuario_store');
 Route::get('/usuario/alterar/{id}', [Controllers\UsuariosController::class, 'edit'])->name('usuario_edit');
